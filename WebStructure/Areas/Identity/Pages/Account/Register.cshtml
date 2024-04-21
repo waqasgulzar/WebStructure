@@ -1,0 +1,88 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Register";
+}
+
+<div class="row m-0 align-items-center bg-white vh-100">
+    <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+        <div class="w-100 d-flex h-100 justify-content-center align-items-center">
+            <img src="~/hopeui/assets/images/dashboard/logo1.png" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
+                    <div class="card-body">
+                        <a class="navbar-brand d-flex align-items-center mb-3 justify-content-center me-5">
+                            <!--Logo start-->
+                            <div class="logo-main">
+                                <img src="~/hopeui/assets/images/dashboard/logo2.png" width="60px" />
+                            </div>
+                            <!--logo End-->
+
+
+
+
+                            <h2 class="logo-title ms-3">Dynamic Web</h2>
+                        </a>
+                        <h4 class="mb-2 text-center">Sign Up</h4>
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                            <h4 class="text-center">Create a new account.</h4>
+                            <hr />
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.Email"></label>
+                                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.FirstName"></label>
+                                <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" />
+
+                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.SurName"></label>
+                                <input asp-for="Input.SurName" class="form-control" autocomplete="surname" aria-required="true" />
+
+                                <span asp-validation-for="Input.SurName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Address"></label>
+                                <input asp-for="Input.Address" class="form-control" autocomplete="address" aria-required="true" />
+
+                                <span asp-validation-for="Input.Address" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.ConfirmPassword"></label>
+                                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                        </form>
+                        <p class="mt-2 justify-content-end d-flex">
+                            <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Already have an account?</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sign-bg sign-bg-right">
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

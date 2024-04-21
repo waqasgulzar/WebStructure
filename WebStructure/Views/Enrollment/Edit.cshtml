@@ -1,0 +1,91 @@
+﻿@model EnrollmentViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@if (Model.Messages.Count > 0)
+{
+    <div class="alert-danger">
+        @foreach (var error in Model.Messages)
+        {
+            <span>
+                @if (!string.IsNullOrWhiteSpace(error.CustomMessage))
+                {
+                    @error.CustomMessage
+                }
+                else if (Model.IsError)
+                {
+                    @error.ExceptionMessage
+                }
+            </span>
+        }
+    </div>
+}
+<div>
+    @if (Model.UserEnrolled)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Class Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h5 class="form-label">Class Name:</h5>
+                            <p class="form-control-plaintext">@Model.Enrollment.Class.ClassName</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="form-label">Class Details:</h5>
+                            <p class="form-control-plaintext">@Model.Enrollment.Class.ClassDetails</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="form-label">Class Timing:</h5>
+                            <p class="form-control-plaintext">@Model.Enrollment.Class.Timing.TimeOfDay</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="form-label">Class Grade:</h5>
+                            <p class="form-control-plaintext">@Model.Enrollment.Class.Grade</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Enrollment in Class</h4>
+                </div>
+            </div>
+            <div>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Enrollment.Id" readonly="readonly" class="form-control" />
+                    <input type="hidden" asp-for="Enrollment.CreatedOn" class="form-control" />
+                    <input type="hidden" asp-for="Enrollment.CreatedBy" class="form-control" />
+                    <div class="form-group">
+                        <label class="form-label">Class Name</label>
+                        @* <input type="text" asp-for="Enrollment.ClassId" class="form-control" placeholder="Enter Name"> *@
+                        <select class="form-control"
+                                asp-for="Enrollment.ClassId"
+                                asp-items="@(new SelectList(Model.ClassResponses,"Id", "ClassName"))" required>
+                            <option value="" data-display-text="Choose an option">Select Class</option>
+                        </select>
+                    </div>
+                    <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+                    <a asp-controller="Class" asp-action="Index" class="btn btn-danger">cancel</a>
+                </form>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

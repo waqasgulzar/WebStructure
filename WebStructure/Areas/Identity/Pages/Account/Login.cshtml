@@ -1,0 +1,91 @@
+﻿@page
+@model LoginModel
+
+@{
+
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Log in";
+}
+
+
+
+<div class="row m-0 align-items-center bg-white vh-100">
+    <div class="col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
+                    <div class="card-body">
+                        <a class="navbar-brand d-flex align-items-center mb-3 justify-content-center me-5">
+                            <!--Logo start-->
+                            <div class="logo-main">
+                                <img src="~/hopeui/assets/images/dashboard/logo1.png" width="60px" />
+
+                            </div>
+                            <!--logo End-->
+
+
+
+
+                            <h2 class="logo-title ms-3">Dynamic Web</h2>
+                        </a>
+                        <h3 class="mb-2 text-center">Log In</h3>
+                        <form id="account" method="post">
+                            <hr />
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.Email" class="form-label"></label>
+                                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password" class="form-label"></label>
+                                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe" class="form-label">
+                                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <button id="login-submit" type="submit" class="w-100 btn btn-primary">Log in</button>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <p>
+                                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                </p>
+                                <p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sign-bg">
+            <svg width="280" height="230" viewBox="0 0 431 398" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.05">
+                    <rect x="-157.085" y="193.773" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 -157.085 193.773)" fill="#3B8AFF" />
+                    <rect x="7.46875" y="358.327" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 7.46875 358.327)" fill="#3B8AFF" />
+                    <rect x="61.9355" y="138.545" width="310.286" height="77.5714" rx="38.7857" transform="rotate(45 61.9355 138.545)" fill="#3B8AFF" />
+                    <rect x="62.3154" y="-190.173" width="543" height="77.5714" rx="38.7857" transform="rotate(45 62.3154 -190.173)" fill="#3B8AFF" />
+                </g>
+            </svg>
+        </div>
+    </div>
+    <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+        <div class="w-100 d-flex h-100 justify-content-center align-items-center">
+
+            <img src="~/hopeui/assets/images/dashboard/logo2.png" />
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
